@@ -1,4 +1,4 @@
-package dev.yasan.fresh.gifs.ui.theme
+package dev.yasan.fresh.gifs.presentation.compose.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

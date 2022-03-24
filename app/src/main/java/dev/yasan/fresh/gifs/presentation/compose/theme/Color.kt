@@ -1,4 +1,4 @@
-package dev.yasan.fresh.gifs.ui.theme
+package dev.yasan.fresh.gifs.presentation.compose.theme
 
 import androidx.compose.ui.graphics.Color
 
