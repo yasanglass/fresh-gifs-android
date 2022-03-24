@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import dev.yasan.fresh.gifs.data.network.GiphyAPI
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -34,5 +35,10 @@ class AppModule {
             .client(provideOkHttpClient())
             .build()
     }
+
+    @Singleton
+    @Provides
+    fun provideGiphyAPI(retrofit: Retrofit): GiphyAPI =
+        retrofit.create(GiphyAPI::class.java)
 
 }
