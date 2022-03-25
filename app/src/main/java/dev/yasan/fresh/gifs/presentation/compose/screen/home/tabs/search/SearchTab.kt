@@ -8,6 +8,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -46,8 +47,10 @@ fun SearchTab(
     val queriedGifs = searchViewModel.queriedGifs.observeAsState()
     val queryState = rememberSaveable { mutableStateOf("") }
 
-    if (trendingGifs.value is Resource.Initial) {
-        searchViewModel.loadTrendingGifs()
+    LaunchedEffect(key1 = trendingGifs.value) {
+        if (trendingGifs.value is Resource.Initial) {
+            searchViewModel.loadTrendingGifs()
+        }
     }
 
     val windowInfo = rememberWindowInfo()
@@ -158,7 +161,17 @@ fun SearchTab(
                     ErrorTabContent(
                         message = stringResource(
                             id = content.messageResourceId ?: R.string.failed_to_load_data
-                        )
+                        ),
+                        onRetry = {
+                            if (noQuery) {
+                                searchViewModel.loadTrendingGifs(isRetry = true)
+                            } else {
+                                searchViewModel.loadQueriedGifs(
+                                    query = queryState.value,
+                                    isRetry = true
+                                )
+                            }
+                        }
                     )
                 }
 
