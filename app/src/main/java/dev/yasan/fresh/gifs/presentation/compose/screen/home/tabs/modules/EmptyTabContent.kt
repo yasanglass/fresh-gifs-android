@@ -10,6 +10,7 @@ import androidx.compose.material.icons.sharp.Error
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -25,7 +26,10 @@ import dev.yasan.kit.compose.type.rubikFamily
 @Preview(uiMode = UI_MODE_NIGHT_NO, group = "Day")
 @Preview(uiMode = UI_MODE_NIGHT_YES, group = "Night")
 @Composable
-fun EmptyTabContent(@PreviewParameter(StringPreviewProvider::class) text: String) {
+fun EmptyTabContent(
+    @PreviewParameter(StringPreviewProvider::class) text: String,
+    icon: ImageVector = MyAppIcons.Error
+) {
 
     Column(
         modifier = Modifier
@@ -35,7 +39,7 @@ fun EmptyTabContent(@PreviewParameter(StringPreviewProvider::class) text: String
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Icon(
-            imageVector = MyAppIcons.Error,
+            imageVector = icon,
             contentDescription = null,
             tint = colorResource(id = R.color.text_desc)
         )
