@@ -1,6 +1,10 @@
 package dev.yasan.fresh.gifs.presentation.compose.screen.home.tabs.search
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -9,6 +13,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Icon
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
+import androidx.compose.material.icons.sharp.Clear
 import androidx.compose.material.icons.sharp.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -76,7 +81,8 @@ fun SearchField(
                 Icon(
                     MyAppIcons.Search,
                     contentDescription = stringResource(id = R.string.search),
-                    tint = colorResource(id = R.color.text_title)
+                    tint = colorResource(id = R.color.text_title),
+                    modifier = Modifier.padding(grid(2))
                 )
             },
             keyboardOptions = KeyboardOptions(
@@ -90,7 +96,24 @@ fun SearchField(
                     keyboardController?.hide()
                     focusManager.clearFocus()
                 }
-            ),
+            ), trailingIcon = {
+                AnimatedVisibility(
+                    visible = value.isNotEmpty(),
+                    enter = fadeIn(),
+                    exit = fadeOut()
+                ) {
+                    Icon(
+                        MyAppIcons.Clear,
+                        contentDescription = "clear text",
+                        modifier = Modifier
+                            .clickable {
+                                onValueChange("")
+                            }
+                            .padding(grid(2))
+                    )
+                }
+            }
+
         )
 
         FreshDivider()

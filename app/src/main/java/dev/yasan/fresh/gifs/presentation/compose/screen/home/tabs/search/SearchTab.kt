@@ -56,9 +56,8 @@ fun SearchTab(
     val windowInfo = rememberWindowInfo()
 
     val lazyColumnModifier = when (windowInfo.screenWidthInfo) {
-        is WindowInfo.WindowType.Expanded -> Modifier.requiredWidth(920.dp)
-        is WindowInfo.WindowType.Medium -> Modifier.requiredWidth(480.dp)
         is WindowInfo.WindowType.Compact -> Modifier.fillMaxSize()
+        else -> Modifier.requiredWidth(480.dp)
     }
 
     Log.d(TAG, "SearchTab: windowInfo = ${windowInfo.screenWidthInfo}")
