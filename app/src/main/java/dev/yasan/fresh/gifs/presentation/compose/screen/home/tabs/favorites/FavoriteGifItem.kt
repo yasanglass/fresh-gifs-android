@@ -40,7 +40,12 @@ import dev.yasan.kit.compose.foundation.grid
 import dev.yasan.kit.compose.type.rubikFamily
 
 @Composable
-fun FavoriteGifItem(modifier: Modifier = Modifier, gif: Gif, favorite: Boolean, onClick: () -> Unit) {
+fun FavoriteGifItem(
+    modifier: Modifier = Modifier,
+    gif: Gif,
+    favorite: Boolean,
+    onClick: () -> Unit
+) {
 
     val context = LocalContext.current
 
@@ -61,9 +66,6 @@ fun FavoriteGifItem(modifier: Modifier = Modifier, gif: Gif, favorite: Boolean, 
     Column(
         modifier = modifier
             .padding(bottom = grid(2))
-            .clickable {
-                onClick()
-            }
             .fillMaxWidth()
             .background(color = colorResource(id = R.color.layer_foreground))
     ) {
@@ -114,7 +116,12 @@ fun FavoriteGifItem(modifier: Modifier = Modifier, gif: Gif, favorite: Boolean, 
             )
 
             Icon(
-                modifier = Modifier.padding(rowPadding),
+                modifier = Modifier
+                    .clickable(
+                        onClickLabel = stringResource(id = if (favorite) R.string.remove_from_favorites else R.string.add_to_favorites),
+                        onClick = onClick
+                    )
+                    .padding(rowPadding),
                 imageVector = if (favorite) MyAppIcons.Favorite else MyAppIcons.FavoriteBorder,
                 contentDescription = null,
                 tint = colorResource(id = R.color.text_title)

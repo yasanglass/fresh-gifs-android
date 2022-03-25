@@ -61,9 +61,6 @@ fun GifItem(modifier: Modifier = Modifier, gif: Gif, favorite: Boolean, onClick:
     Column(
         modifier = modifier
             .padding(bottom = grid(2))
-            .clickable {
-                onClick()
-            }
             .fillMaxWidth()
             .background(color = colorResource(id = R.color.layer_foreground))
     ) {
@@ -114,7 +111,12 @@ fun GifItem(modifier: Modifier = Modifier, gif: Gif, favorite: Boolean, onClick:
             )
 
             Icon(
-                modifier = Modifier.padding(rowPadding),
+                modifier = Modifier
+                    .clickable(
+                        onClickLabel = stringResource(id = if (favorite) R.string.remove_from_favorites else R.string.add_to_favorites),
+                        onClick = onClick
+                    )
+                    .padding(rowPadding),
                 imageVector = if (favorite) MyAppIcons.Favorite else MyAppIcons.FavoriteBorder,
                 contentDescription = null,
                 tint = colorResource(id = R.color.text_title)
