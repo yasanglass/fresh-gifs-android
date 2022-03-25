@@ -21,8 +21,6 @@ import dev.yasan.kit.compose.foundation.grid
 import dev.yasan.kit.compose.preview.string.StringPreviewProvider
 import dev.yasan.kit.compose.type.rubikFamily
 
-// TODO add retry button
-
 @Preview(uiMode = UI_MODE_NIGHT_NO, group = "Day")
 @Preview(uiMode = UI_MODE_NIGHT_YES, group = "Night")
 @Composable
