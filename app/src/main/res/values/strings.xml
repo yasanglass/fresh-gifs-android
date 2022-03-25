@@ -7,4 +7,5 @@
     <string name="trending_gifs">Trending GIFs</string>
     <string name="no_trending_gifs">No trending GIFs</string>
     <string name="no_gifs_found">No GIFs found for the query</string>
+    <string name="dot">•</string>
 </resources>

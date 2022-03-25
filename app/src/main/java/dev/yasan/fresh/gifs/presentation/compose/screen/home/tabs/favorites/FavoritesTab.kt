@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import dev.yasan.fresh.gifs.model.freshgifs.FlatGif
 import dev.yasan.fresh.gifs.presentation.compose.screen.home.tabs.modules.GifItem
+import dev.yasan.fresh.gifs.presentation.compose.screen.home.tabs.modules.TabFooter
 
 private const val TAG = "FavoritesTab"
 
@@ -35,5 +36,12 @@ fun FavoritesTab(favoriteGifs: List<FlatGif>, onRemoveFromFavorites: (FlatGif) -
 
         }
 
+        item {
+
+            TabFooter()
+
+        }
+
     }
+
 }
