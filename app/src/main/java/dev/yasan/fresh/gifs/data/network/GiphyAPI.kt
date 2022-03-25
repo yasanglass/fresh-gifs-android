@@ -17,7 +17,7 @@ interface GiphyAPI {
     ): Response<GiphyResponse>
 
     @Headers("Accept: application/json")
-    @GET("v1/gifs/trending")
+    @GET("v1/gifs/search")
     suspend fun fetchQueriedGifs(
         @Query("q") query: String,
         @Query("api_key") apiKey: String = GIPHY_API_KEY,

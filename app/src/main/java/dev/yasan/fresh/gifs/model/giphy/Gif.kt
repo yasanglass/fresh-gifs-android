@@ -10,6 +10,12 @@ import com.squareup.moshi.JsonClass
 data class Gif(
     @field:Json(name = "id") val id: String,
     @field:Json(name = "title") val title: String,
-    @field:Json(name = "embed_url") val embedUrl: String,
     @field:Json(name = "images") val images: GiphyImages,
-)
+) {
+
+    /**
+     * Checks if the object is a valid GIF.
+     */
+    fun isValid() = id.isNotBlank() && title.isNotBlank() && images.previewGif.url != null
+
+}

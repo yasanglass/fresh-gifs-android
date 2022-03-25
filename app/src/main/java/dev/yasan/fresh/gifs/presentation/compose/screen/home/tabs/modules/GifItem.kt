@@ -68,7 +68,7 @@ fun GifItem(modifier: Modifier = Modifier, gif: Gif) {
                 .placeholder(
                     visible = loadingState.value == GifLoadState.LOADING,
                     highlight = PlaceholderHighlight.fade(highlightColor = colorResource(id = R.color.layer_foreground)),
-                    color = colorResource(id = R.color.layer_midground),
+                    color = colorResource(id = R.color.layer_background),
                 )
                 .fillMaxWidth()
                 .aspectRatio(gif.images.previewGif.aspectRatio),

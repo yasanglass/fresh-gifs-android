@@ -3,4 +3,6 @@
     <string name="search">Search</string>
     <string name="favorites">Favorites</string>
     <string name="failed_to_load_gif">Failed to load GIF</string>
+    <string name="failed_to_load_data">Failed to load data</string>
+    <string name="trending_gifs">Trending GIFs</string>
 </resources>
