@@ -87,9 +87,7 @@ fun SearchTab(
                 exit = shrinkVertically() + fadeOut()
             ) {
                 Text(
-                    modifier = Modifier
-                        .padding(horizontal = grid(2))
-                        .padding(top = grid(2)),
+                    modifier = Modifier.padding(grid(2)),
                     text = stringResource(R.string.trending_gifs),
                     fontFamily = rubikFamily,
                     color = colorResource(id = R.color.text_desc),

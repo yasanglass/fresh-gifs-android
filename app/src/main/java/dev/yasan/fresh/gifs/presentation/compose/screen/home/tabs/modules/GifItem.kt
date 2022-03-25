@@ -60,7 +60,7 @@ fun GifItem(modifier: Modifier = Modifier, gif: Gif, favorite: Boolean, onClick:
 
     Column(
         modifier = modifier
-            .padding(top = grid(2))
+            .padding(bottom = grid(2))
             .clickable {
                 onClick()
             }
