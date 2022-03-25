@@ -29,7 +29,7 @@ data class Gif(
 
     override fun equals(other: Any?): Boolean {
         if (javaClass != other?.javaClass) return false
-        other as FlatGif
+        other as Gif
         return id == other.id
     }
 
