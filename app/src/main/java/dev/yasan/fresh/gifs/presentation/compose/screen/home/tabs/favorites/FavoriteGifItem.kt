@@ -82,7 +82,7 @@ fun FavoriteGifItem(
             model = gif.images.previewGif.url,
             contentDescription = gif.title,
             imageLoader = imageLoader,
-            contentScale = ContentScale.FillBounds,
+            contentScale = ContentScale.Crop,
         ) {
             when (painter.state) {
                 is AsyncImagePainter.State.Success -> {
