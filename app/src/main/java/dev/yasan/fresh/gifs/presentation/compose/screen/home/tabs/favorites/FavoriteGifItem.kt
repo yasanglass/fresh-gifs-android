@@ -74,8 +74,8 @@ fun FavoriteGifItem(
             modifier = Modifier
                 .placeholder(
                     visible = loadingState.value == GifLoadState.LOADING,
-                    highlight = PlaceholderHighlight.fade(highlightColor = colorResource(id = R.color.layer_foreground)),
-                    color = colorResource(id = R.color.layer_background),
+                    highlight = PlaceholderHighlight.fade(highlightColor = colorResource(id = R.color.text_title)),
+                    color = colorResource(id = R.color.text_desc),
                 )
                 .fillMaxWidth()
                 .requiredHeight(grid(24)),
