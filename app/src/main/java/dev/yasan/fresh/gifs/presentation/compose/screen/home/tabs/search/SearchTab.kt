@@ -44,7 +44,7 @@ fun SearchTab() {
         }
     }
 
-    val textState = remember { mutableStateOf(TextFieldValue()) }
+    val textState = remember { mutableStateOf(TextFieldValue()) } // TODO save query in viewmodel
 
     LaunchedEffect(key1 = textState.value.text) {
         searchViewModel.loadQueriedGifs(query = textState.value.text)
