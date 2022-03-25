@@ -11,6 +11,7 @@ import dev.yasan.fresh.gifs.data.repository.GifRepositoryImp
 import dev.yasan.fresh.gifs.data.source.database.FavoritesDatabase
 import dev.yasan.fresh.gifs.data.source.database.dao.FavoriteGifDao
 import dev.yasan.fresh.gifs.data.source.network.GiphyAPI
+import dev.yasan.fresh.gifs.data.source.network.NetworkConstants
 import dev.yasan.fresh.gifs.domain.repository.FavoriteRepository
 import dev.yasan.fresh.gifs.domain.repository.GifRepository
 import dev.yasan.kit.core.DispatcherProvider
@@ -54,7 +55,7 @@ class AppModule {
     @Provides
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://api.giphy.com/")
+            .baseUrl(NetworkConstants.GIPHY_BASE_URL)
             .addConverterFactory(MoshiConverterFactory.create())
             .client(provideOkHttpClient())
             .build()

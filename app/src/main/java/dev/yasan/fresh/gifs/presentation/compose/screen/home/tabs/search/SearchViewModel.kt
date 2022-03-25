@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.yasan.fresh.gifs.domain.repository.GifRepository
-import dev.yasan.fresh.gifs.model.giphy.Gif
+import dev.yasan.fresh.gifs.model.freshgifs.FlatGif
 import dev.yasan.kit.core.DispatcherProvider
 import dev.yasan.kit.core.Resource
 import kotlinx.coroutines.Job
@@ -27,11 +27,11 @@ class SearchViewModel @Inject constructor(
         private const val TAG = "SearchViewModel"
     }
 
-    private var _queriedGifs = MutableLiveData<Resource<List<Gif>>>(Resource.Initial())
-    val queriedGifs: LiveData<Resource<List<Gif>>> get() = _queriedGifs
+    private var _queriedGifs = MutableLiveData<Resource<List<FlatGif>>>(Resource.Initial())
+    val queriedGifs: LiveData<Resource<List<FlatGif>>> get() = _queriedGifs
 
-    private var _trendingGifs = MutableLiveData<Resource<List<Gif>>>(Resource.Initial())
-    val trendingGifs: LiveData<Resource<List<Gif>>> get() = _trendingGifs
+    private var _trendingGifs = MutableLiveData<Resource<List<FlatGif>>>(Resource.Initial())
+    val trendingGifs: LiveData<Resource<List<FlatGif>>> get() = _trendingGifs
 
     private var loadTrendingJob: Job? = null
 

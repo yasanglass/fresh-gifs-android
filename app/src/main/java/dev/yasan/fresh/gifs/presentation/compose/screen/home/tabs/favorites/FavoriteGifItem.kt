@@ -32,8 +32,8 @@ import com.google.accompanist.placeholder.PlaceholderHighlight
 import com.google.accompanist.placeholder.fade
 import com.google.accompanist.placeholder.placeholder
 import dev.yasan.fresh.gifs.R
+import dev.yasan.fresh.gifs.model.freshgifs.FlatGif
 import dev.yasan.fresh.gifs.model.freshgifs.GifLoadState
-import dev.yasan.fresh.gifs.model.giphy.Gif
 import dev.yasan.fresh.gifs.presentation.compose.common.FreshDivider
 import dev.yasan.fresh.gifs.presentation.compose.theme.MyAppIcons
 import dev.yasan.kit.compose.foundation.grid
@@ -42,7 +42,7 @@ import dev.yasan.kit.compose.type.rubikFamily
 @Composable
 fun FavoriteGifItem(
     modifier: Modifier = Modifier,
-    gif: Gif,
+    gif: FlatGif,
     favorite: Boolean,
     onClick: () -> Unit
 ) {
@@ -79,7 +79,7 @@ fun FavoriteGifItem(
                 )
                 .fillMaxWidth()
                 .requiredHeight(grid(24)),
-            model = gif.images.previewGif.url,
+            model = gif.url,
             contentDescription = gif.title,
             imageLoader = imageLoader,
             contentScale = ContentScale.Crop,

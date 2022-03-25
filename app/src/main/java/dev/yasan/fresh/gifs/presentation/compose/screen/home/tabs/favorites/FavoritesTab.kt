@@ -48,7 +48,7 @@ fun FavoritesTab(favoriteGifs: List<FlatGif>, onRemoveFromFavorites: (FlatGif) -
 
             FavoriteGifItem(
                 modifier = Modifier,
-                gif = flatGif.toGif(),
+                gif = flatGif,
                 favorite = favoriteGifs.contains(flatGif),
             ) {
                 onRemoveFromFavorites(flatGif)

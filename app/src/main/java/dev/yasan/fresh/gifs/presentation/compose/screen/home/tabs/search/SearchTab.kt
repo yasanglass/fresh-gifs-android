@@ -1,6 +1,5 @@
 package dev.yasan.fresh.gifs.presentation.compose.screen.home.tabs.search
 
-import android.util.Log
 import androidx.compose.animation.*
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
@@ -41,8 +40,6 @@ fun SearchTab(
     onRemoveFromFavorites: (FlatGif) -> Unit
 ) {
 
-    Log.d(TAG, "SearchTab: favorites size = ${favoriteGifs.size}")
-
     val searchViewModel: SearchViewModel = hiltViewModel()
 
     val trendingGifs = searchViewModel.trendingGifs.observeAsState()
@@ -59,8 +56,6 @@ fun SearchTab(
         is WindowInfo.WindowType.Compact -> Modifier.fillMaxSize()
         else -> Modifier.requiredWidth(480.dp)
     }
-
-    Log.d(TAG, "SearchTab: windowInfo = ${windowInfo.screenWidthInfo}")
 
     LazyColumn(
         modifier = lazyColumnModifier
@@ -145,15 +140,14 @@ fun SearchTab(
                     items = list,
                     key = { it.id }
                 ) { gif ->
-                    val favorite = favoriteGifs.contains(gif.flatten())
+                    val favorite = favoriteGifs.contains(gif)
                     GifItem(
                         modifier = Modifier.animateItemPlacement(),
                         gif = gif,
                         favorite = favorite
                     ) {
-                        val flattenGif = gif.flatten()
-                        if (favorite) onRemoveFromFavorites(flattenGif)
-                        else onAddToFavorites(flattenGif)
+                        if (favorite) onRemoveFromFavorites(gif)
+                        else onAddToFavorites(gif)
                     }
                 }
             }

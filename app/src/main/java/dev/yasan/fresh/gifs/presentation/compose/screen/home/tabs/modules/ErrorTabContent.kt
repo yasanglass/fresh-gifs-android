@@ -25,7 +25,10 @@ import dev.yasan.kit.compose.type.rubikFamily
 @Preview(uiMode = UI_MODE_NIGHT_NO, group = "Day")
 @Preview(uiMode = UI_MODE_NIGHT_YES, group = "Night")
 @Composable
-fun ErrorTabContent(@PreviewParameter(StringPreviewProvider::class) message: String) {
+fun ErrorTabContent(
+    @PreviewParameter(StringPreviewProvider::class) message: String,
+    onRetry: () -> Unit = {}
+) {
 
     Column(
         modifier = Modifier

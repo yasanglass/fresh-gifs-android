@@ -1,6 +1,7 @@
 package dev.yasan.fresh.gifs.model.freshgifs
 
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import dev.yasan.fresh.gifs.data.source.database.FavoritesDatabase
 import dev.yasan.fresh.gifs.model.giphy.Gif
@@ -8,9 +9,9 @@ import dev.yasan.fresh.gifs.model.giphy.GiphyImages
 import dev.yasan.fresh.gifs.model.giphy.GiphyImagesPreviewGif
 
 /**
- * A simplified version of [Gif].
+ * A flattened version of [Gif] for easier use.
  *
- * @see Gif
+ * @see Gif.flatten
  * @see FavoritesDatabase
  */
 @Entity(tableName = "favorite_gifs")
@@ -37,6 +38,9 @@ data class FlatGif(
             )
         )
     )
+
+    @Ignore
+    val aspectRatio = width.toFloat() / height.toFloat()
 
     override fun equals(other: Any?): Boolean {
         if (javaClass != other?.javaClass) return false
