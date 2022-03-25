@@ -3,9 +3,7 @@ package dev.yasan.fresh.gifs.presentation.compose.screen.home.tabs.search
 import android.util.Log
 import androidx.compose.animation.*
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.CircularProgressIndicator
@@ -20,6 +18,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import dev.yasan.fresh.gifs.R
 import dev.yasan.fresh.gifs.model.freshgifs.FlatGif
@@ -28,6 +27,8 @@ import dev.yasan.fresh.gifs.presentation.compose.screen.home.tabs.modules.ErrorT
 import dev.yasan.fresh.gifs.presentation.compose.screen.home.tabs.modules.GifItem
 import dev.yasan.kit.compose.foundation.grid
 import dev.yasan.kit.compose.type.rubikFamily
+import dev.yasan.kit.compose.util.WindowInfo
+import dev.yasan.kit.compose.util.rememberWindowInfo
 import dev.yasan.kit.core.Resource
 
 private const val TAG = "SearchTab"
@@ -52,9 +53,19 @@ fun SearchTab(
         searchViewModel.loadTrendingGifs()
     }
 
+    val windowInfo = rememberWindowInfo()
+
+    val lazyColumnModifier = when (windowInfo.screenWidthInfo) {
+        is WindowInfo.WindowType.Expanded -> Modifier.requiredWidth(920.dp)
+        is WindowInfo.WindowType.Medium -> Modifier.requiredWidth(480.dp)
+        is WindowInfo.WindowType.Compact -> Modifier.fillMaxSize()
+    }
+
+    Log.d(TAG, "SearchTab: windowInfo = ${windowInfo.screenWidthInfo}")
+
     LazyColumn(
-        modifier = Modifier
-            .fillMaxSize()
+        modifier = lazyColumnModifier
+            .fillMaxHeight()
             .animateContentSize(),
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
