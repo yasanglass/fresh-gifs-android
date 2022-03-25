@@ -20,7 +20,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchViewModel @Inject constructor(
     private val dispatchers: DispatcherProvider,
-    private val gifRepository: GifRepository
+    private val gifRepository: GifRepository,
 ) : ViewModel() {
 
     companion object {

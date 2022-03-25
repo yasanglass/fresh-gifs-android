@@ -1,11 +1,17 @@
 package dev.yasan.fresh.gifs.di
 
+import android.app.Application
+import androidx.room.Room
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import dev.yasan.fresh.gifs.data.source.network.GiphyAPI
+import dev.yasan.fresh.gifs.data.repository.FavoriteRepositoryImp
 import dev.yasan.fresh.gifs.data.repository.GifRepositoryImp
+import dev.yasan.fresh.gifs.data.source.database.FavoritesDatabase
+import dev.yasan.fresh.gifs.data.source.database.dao.FavoriteGifDao
+import dev.yasan.fresh.gifs.data.source.network.GiphyAPI
+import dev.yasan.fresh.gifs.domain.repository.FavoriteRepository
 import dev.yasan.fresh.gifs.domain.repository.GifRepository
 import dev.yasan.kit.core.DispatcherProvider
 import kotlinx.coroutines.CoroutineDispatcher
@@ -63,5 +69,22 @@ class AppModule {
     @Provides
     fun provideGifRepository(giphyAPI: GiphyAPI): GifRepository =
         GifRepositoryImp(giphyAPI = giphyAPI)
+
+    @Singleton
+    @Provides
+    fun provideFavoriteRepository(favoriteGifDao: FavoriteGifDao): FavoriteRepository =
+        FavoriteRepositoryImp(favoriteGifDao = favoriteGifDao)
+
+    @Singleton
+    @Provides
+    fun provideFavoritesDatabase(
+        app: Application,
+        callback: FavoritesDatabase.CallBack
+    ) = Room.databaseBuilder(app, FavoritesDatabase::class.java, "favorites")
+        .addCallback(callback)
+        .build()
+
+    @Provides
+    fun provideFavoriteGifDao(favoritesDatabase: FavoritesDatabase) = favoritesDatabase.favoriteGifDao()
 
 }

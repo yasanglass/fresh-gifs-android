@@ -1,5 +1,6 @@
 package dev.yasan.fresh.gifs.presentation.compose.screen.home.tabs.search
 
+import android.util.Log
 import androidx.compose.animation.*
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
@@ -20,6 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import dev.yasan.fresh.gifs.R
+import dev.yasan.fresh.gifs.model.freshgifs.FlatGif
 import dev.yasan.fresh.gifs.presentation.compose.screen.home.tabs.modules.EmptyTabContent
 import dev.yasan.fresh.gifs.presentation.compose.screen.home.tabs.modules.ErrorTabContent
 import dev.yasan.fresh.gifs.presentation.compose.screen.home.tabs.modules.GifItem
@@ -27,9 +29,17 @@ import dev.yasan.kit.compose.foundation.grid
 import dev.yasan.kit.compose.type.rubikFamily
 import dev.yasan.kit.core.Resource
 
+private const val TAG = "SearchTab"
+
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun SearchTab() {
+fun SearchTab(
+    favoriteGifs: List<FlatGif>,
+    onAddToFavorites: (FlatGif) -> Unit,
+    onRemoveFromFavorites: (FlatGif) -> Unit
+) {
+
+    Log.d(TAG, "SearchTab: favorites size = ${favoriteGifs.size}")
 
     val searchViewModel: SearchViewModel = hiltViewModel()
 
@@ -113,15 +123,22 @@ fun SearchTab() {
 
                 val list = content.data ?: emptyList()
 
-
-
                 items(
                     items = list,
                     key = { it.id }
                 ) { gif ->
-                    GifItem(modifier = Modifier.animateItemPlacement(), gif = gif)
+                    val favorite = favoriteGifs.contains(gif.flatten())
+                    Log.d(TAG, "SearchTab: ${gif.id} is favorite = $favorite")
+                    GifItem(
+                        modifier = Modifier.animateItemPlacement(),
+                        gif = gif,
+                        favorite = favorite
+                    ) {
+                        val flattenGif = gif.flatten()
+                        if (favorite) onRemoveFromFavorites(flattenGif)
+                        else onAddToFavorites(flattenGif)
+                    }
                 }
-
             }
 
             is Resource.Error -> {

@@ -2,6 +2,7 @@ package dev.yasan.fresh.gifs.model.giphy
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import dev.yasan.fresh.gifs.model.freshgifs.FlatGif
 
 /**
  * Holds the data of a single GIF.
@@ -16,6 +17,20 @@ data class Gif(
     /**
      * Checks if the object is a valid GIF.
      */
-    fun isValid() = id.isNotBlank() && title.isNotBlank() && images.previewGif.url != null
+    fun isValid() = id.isNotBlank() && title.isNotBlank() && images.previewGif.url != null && images.previewGif.height != null && images.previewGif.width != null
+
+    fun flatten( ) = FlatGif(
+        id = id,
+        title = title,
+        url = images.previewGif.url ?: "",
+        height = images.previewGif.height?.toIntOrNull() ?: 1,
+        width = images.previewGif.width?.toIntOrNull() ?: 1,
+    )
+
+    override fun equals(other: Any?): Boolean {
+        if (javaClass != other?.javaClass) return false
+        other as FlatGif
+        return id == other.id
+    }
 
 }

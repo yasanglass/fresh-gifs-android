@@ -4,10 +4,12 @@ import android.content.res.Configuration.UI_MODE_NIGHT_NO
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.os.Build
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.sharp.Favorite
+import androidx.compose.material.icons.sharp.FavoriteBorder
 import androidx.compose.material.icons.sharp.Warning
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -38,7 +40,7 @@ import dev.yasan.kit.compose.foundation.grid
 import dev.yasan.kit.compose.type.rubikFamily
 
 @Composable
-fun GifItem(modifier: Modifier = Modifier, gif: Gif) {
+fun GifItem(modifier: Modifier = Modifier, gif: Gif, favorite: Boolean, onClick: () -> Unit) {
 
     val context = LocalContext.current
 
@@ -59,6 +61,9 @@ fun GifItem(modifier: Modifier = Modifier, gif: Gif) {
     Column(
         modifier = modifier
             .padding(top = grid(2))
+            .clickable {
+                onClick()
+            }
             .fillMaxWidth()
             .background(color = colorResource(id = R.color.layer_foreground))
     ) {
@@ -111,7 +116,7 @@ fun GifItem(modifier: Modifier = Modifier, gif: Gif) {
 
             Icon(
                 modifier = Modifier.padding(rowPadding),
-                imageVector = MyAppIcons.Favorite,
+                imageVector = if (favorite) MyAppIcons.Favorite else MyAppIcons.FavoriteBorder,
                 contentDescription = null,
                 tint = colorResource(id = R.color.text_title)
             )
