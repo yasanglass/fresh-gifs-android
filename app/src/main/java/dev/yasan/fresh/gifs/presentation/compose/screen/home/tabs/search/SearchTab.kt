@@ -20,6 +20,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import dev.yasan.fresh.gifs.R
+import dev.yasan.fresh.gifs.presentation.compose.screen.home.tabs.modules.EmptyTabContent
+import dev.yasan.fresh.gifs.presentation.compose.screen.home.tabs.modules.ErrorTabContent
 import dev.yasan.fresh.gifs.presentation.compose.screen.home.tabs.modules.GifItem
 import dev.yasan.kit.compose.foundation.grid
 import dev.yasan.kit.compose.type.rubikFamily
@@ -51,7 +53,9 @@ fun SearchTab() {
     }
 
     LazyColumn(
-        modifier = Modifier.fillMaxSize().animateContentSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .animateContentSize(),
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -89,21 +93,55 @@ fun SearchTab() {
             }
         }
 
+        item {
+
+            AnimatedVisibility(
+                visible = content is Resource.Success && content.data.isNullOrEmpty(),
+                enter = expandVertically() + fadeIn(),
+                exit = shrinkVertically() + fadeOut()
+            ) {
+
+                EmptyTabContent(text = stringResource(id = if (noQuery) R.string.no_trending_gifs else R.string.no_gifs_found))
+
+            }
+
+        }
+
         when (content) {
 
             is Resource.Success -> {
+
+                val list = content.data ?: emptyList()
+
+
+
                 items(
-                    items = content.data!!,
+                    items = list,
                     key = { it.id }
                 ) { gif ->
                     GifItem(modifier = Modifier.animateItemPlacement(), gif = gif)
                 }
+
+            }
+
+            is Resource.Error -> {
+
+                item {
+                    ErrorTabContent(
+                        message = stringResource(
+                            id = content.messageResourceId ?: R.string.failed_to_load_data
+                        )
+                    )
+                }
+
             }
 
             else -> {
                 item {
                     CircularProgressIndicator(
-                        modifier = Modifier.padding(grid(2)).animateItemPlacement()
+                        modifier = Modifier
+                            .padding(grid(2))
+                            .animateItemPlacement()
                     )
                 }
             }
