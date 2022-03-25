@@ -9,7 +9,7 @@ Simple GIF seaching Android App powered by GIPHY API.
 - Shows a list of matching GIFs for the searched text.
 - Add & remove GIFs to/from favorites.
 - Adjusted UI layout depending on screen size.
-- Animated content placeholders.
+- Subtle animations including content placeholders.
 
 ## Technologies & Libraries 
 
