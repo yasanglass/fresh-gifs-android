@@ -122,7 +122,6 @@ fun SearchTab(
                     key = { it.id }
                 ) { gif ->
                     val favorite = favoriteGifs.contains(gif.flatten())
-                    Log.d(TAG, "SearchTab: ${gif.id} is favorite = $favorite")
                     GifItem(
                         modifier = Modifier.animateItemPlacement(),
                         gif = gif,
