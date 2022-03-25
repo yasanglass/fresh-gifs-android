@@ -122,6 +122,20 @@ fun SearchTab(
 
         }
 
+        item {
+
+            AnimatedVisibility(
+                visible = content is Resource.Success && !noQuery && !content.data.isNullOrEmpty(),
+                enter = expandVertically() + fadeIn(),
+                exit = shrinkVertically() + fadeOut()
+            ) {
+
+                Spacer(modifier = Modifier.requiredHeight(grid(2)))
+
+            }
+
+        }
+
         when (content) {
 
             is Resource.Success -> {
