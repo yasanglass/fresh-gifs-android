@@ -1,4 +1,4 @@
-package dev.yasan.fresh.gifs.data.network
+package dev.yasan.fresh.gifs.data.source.network
 
 import dev.yasan.fresh.gifs.model.giphy.GiphyResponse
 import retrofit2.Response

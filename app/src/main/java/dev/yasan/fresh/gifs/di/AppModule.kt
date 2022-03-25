@@ -4,7 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import dev.yasan.fresh.gifs.data.network.GiphyAPI
+import dev.yasan.fresh.gifs.data.source.network.GiphyAPI
 import dev.yasan.fresh.gifs.data.repository.GifRepositoryImp
 import dev.yasan.fresh.gifs.domain.repository.GifRepository
 import dev.yasan.kit.core.DispatcherProvider

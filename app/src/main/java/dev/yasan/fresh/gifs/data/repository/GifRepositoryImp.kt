@@ -1,7 +1,7 @@
 package dev.yasan.fresh.gifs.data.repository
 
 import dev.yasan.fresh.gifs.R
-import dev.yasan.fresh.gifs.data.network.GiphyAPI
+import dev.yasan.fresh.gifs.data.source.network.GiphyAPI
 import dev.yasan.fresh.gifs.domain.repository.GifRepository
 import dev.yasan.fresh.gifs.model.giphy.Gif
 import dev.yasan.kit.core.Resource
