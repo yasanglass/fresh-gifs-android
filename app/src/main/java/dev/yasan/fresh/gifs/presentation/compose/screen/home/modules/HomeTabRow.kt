@@ -11,6 +11,7 @@ import androidx.compose.ui.res.stringResource
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.pagerTabIndicatorOffset
+import dev.yasan.fresh.gifs.model.freshgifs.HomeTab
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalPagerApi::class)

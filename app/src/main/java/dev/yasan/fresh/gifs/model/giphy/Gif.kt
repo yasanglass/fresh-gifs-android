@@ -11,4 +11,5 @@ data class Gif(
     @field:Json(name = "id") val id: String,
     @field:Json(name = "title") val title: String,
     @field:Json(name = "embed_url") val embedUrl: String,
+    @field:Json(name = "images") val images: GiphyImages,
 )

@@ -7,4 +7,14 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="layer_foreground">#fff</color>
+    <color name="layer_midground">#EEEEEE</color>
+    <color name="layer_background">#D8D8D8</color>
+
+    <color name="divider">@color/layer_background</color>
+
+    <color name="text_title">#212121</color>
+    <color name="text_desc">#666666</color>
+
 </resources>

@@ -1,4 +1,4 @@
-package dev.yasan.fresh.gifs.presentation.compose.screen.home.tabs
+package dev.yasan.fresh.gifs.presentation.compose.screen.home.tabs.favorites
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -12,13 +12,13 @@ import androidx.compose.ui.res.stringResource
 import dev.yasan.fresh.gifs.R
 
 @Composable
-fun SearchTab() {
+fun FavoritesTab() {
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.DarkGray),
         contentAlignment = Alignment.Center
     ) {
-        Text(text = stringResource(R.string.search), color = Color.White)
+        Text(text = stringResource(R.string.favorites), color = Color.White)
     }
 }
