@@ -18,8 +18,6 @@ import androidx.compose.material.icons.sharp.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -39,10 +37,8 @@ fun SearchField(
     modifier: Modifier = Modifier,
     value: String,
     onValueChange: (String) -> Unit,
+    onDone: () -> Unit,
 ) {
-
-    val keyboardController = LocalSoftwareKeyboardController.current
-    val focusManager = LocalFocusManager.current
 
     Column(modifier = modifier) {
 
@@ -81,8 +77,9 @@ fun SearchField(
                 Icon(
                     MyAppIcons.Search,
                     contentDescription = stringResource(id = R.string.search),
-                    tint = colorResource(id = R.color.text_title),
-                    modifier = Modifier.padding(grid(2))
+                    modifier = Modifier
+                        .clickable(onClick = onDone)
+                        .padding(grid(2))
                 )
             },
             keyboardOptions = KeyboardOptions(
@@ -93,8 +90,7 @@ fun SearchField(
             ),
             keyboardActions = KeyboardActions(
                 onDone = {
-                    keyboardController?.hide()
-                    focusManager.clearFocus()
+                    onDone()
                 }
             ), trailingIcon = {
                 AnimatedVisibility(
@@ -104,7 +100,7 @@ fun SearchField(
                 ) {
                     Icon(
                         MyAppIcons.Clear,
-                        contentDescription = "clear text",
+                        contentDescription = stringResource(R.string.clear_text),
                         modifier = Modifier
                             .clickable {
                                 onValueChange("")

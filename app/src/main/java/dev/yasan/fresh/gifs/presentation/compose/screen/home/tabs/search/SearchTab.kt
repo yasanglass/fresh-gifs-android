@@ -14,6 +14,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
@@ -33,7 +35,7 @@ import dev.yasan.kit.core.Resource
 
 private const val TAG = "SearchTab"
 
-@OptIn(ExperimentalFoundationApi::class)
+@OptIn(ExperimentalFoundationApi::class, androidx.compose.ui.ExperimentalComposeUiApi::class)
 @Composable
 fun SearchTab(
     favoriteGifs: List<FlatGif>,
@@ -41,10 +43,14 @@ fun SearchTab(
     onRemoveFromFavorites: (FlatGif) -> Unit
 ) {
 
+    val keyboardController = LocalSoftwareKeyboardController.current
+    val focusManager = LocalFocusManager.current
+
     val searchViewModel: SearchViewModel = hiltViewModel()
 
     val trendingGifs = searchViewModel.trendingGifs.observeAsState()
     val queriedGifs = searchViewModel.queriedGifs.observeAsState()
+
     val queryState = rememberSaveable { mutableStateOf("") }
 
     LaunchedEffect(key1 = trendingGifs.value) {
@@ -75,6 +81,10 @@ fun SearchTab(
                 onValueChange = {
                     queryState.value = it
                     searchViewModel.loadQueriedGifs(query = it)
+                },
+                onDone = {
+                    keyboardController?.hide()
+                    focusManager.clearFocus()
                 }
             )
 
