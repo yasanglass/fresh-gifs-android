@@ -48,20 +48,8 @@ fun SearchTab(
     val queriedGifs = searchViewModel.queriedGifs.observeAsState()
     val queryState = rememberSaveable { mutableStateOf("") }
 
-    DisposableEffect(searchViewModel) {
-
-        if (trendingGifs.value is Resource.Initial) {
-            searchViewModel.loadTrendingGifs()
-        }
-
-        onDispose {
-        }
-    }
-
-    val textState = remember { mutableStateOf(TextFieldValue()) } // TODO save query in viewmodel
-
-    LaunchedEffect(key1 = textState.value.text) {
-        searchViewModel.loadQueriedGifs(query = textState.value.text)
+    if (trendingGifs.value is Resource.Initial) {
+        searchViewModel.loadTrendingGifs()
     }
 
     LazyColumn(
