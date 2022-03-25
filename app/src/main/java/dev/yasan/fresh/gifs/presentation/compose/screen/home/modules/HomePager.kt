@@ -12,14 +12,14 @@ import dev.yasan.fresh.gifs.presentation.compose.screen.home.tabs.favorites.Favo
 import dev.yasan.fresh.gifs.presentation.compose.screen.home.tabs.favorites.FavoritesViewModel
 import dev.yasan.fresh.gifs.presentation.compose.screen.home.tabs.search.SearchTab
 
-private const val TAG = "HomePager"
-
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun HomePager(
     modifier: Modifier = Modifier,
     pagerState: PagerState,
 ) {
+
+    // TODO Scroll to top when tab title is clicked
 
     val favoritesViewModel: FavoritesViewModel = hiltViewModel()
 
