@@ -1,4 +1,4 @@
-package dev.yasan.fresh.gifs.presentation.compose.screen.home.tabs.modules
+package dev.yasan.fresh.gifs.presentation.compose.screen.home.tabs.favorites
 
 import android.content.res.Configuration.UI_MODE_NIGHT_NO
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
@@ -40,7 +40,7 @@ import dev.yasan.kit.compose.foundation.grid
 import dev.yasan.kit.compose.type.rubikFamily
 
 @Composable
-fun GifItem(modifier: Modifier = Modifier, gif: Gif, favorite: Boolean, onClick: () -> Unit) {
+fun FavoriteGifItem(modifier: Modifier = Modifier, gif: Gif, favorite: Boolean, onClick: () -> Unit) {
 
     val context = LocalContext.current
 
@@ -76,7 +76,7 @@ fun GifItem(modifier: Modifier = Modifier, gif: Gif, favorite: Boolean, onClick:
                     color = colorResource(id = R.color.layer_background),
                 )
                 .fillMaxWidth()
-                .aspectRatio(gif.images.previewGif.aspectRatio),
+                .requiredHeight(grid(24)),
             model = gif.images.previewGif.url,
             contentDescription = gif.title,
             imageLoader = imageLoader,
