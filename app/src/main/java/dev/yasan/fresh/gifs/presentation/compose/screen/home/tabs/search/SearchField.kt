@@ -21,6 +21,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.unit.sp
 import dev.yasan.fresh.gifs.R
 import dev.yasan.fresh.gifs.presentation.compose.common.FreshDivider
 import dev.yasan.fresh.gifs.presentation.compose.theme.MyAppIcons
@@ -54,11 +55,14 @@ fun SearchField(
                 ),
             value = value,
             onValueChange = {
-                onValueChange(it)
+                if (it.length <= 10) {
+                    onValueChange(it)
+                }
             },
             textStyle = TextStyle(
                 fontFamily = rubikFamily,
-                color = colorResource(id = R.color.text_title)
+                color = colorResource(id = R.color.text_title),
+                fontSize = 18.sp
             ),
             label = {
                 Text(
@@ -86,7 +90,7 @@ fun SearchField(
                     keyboardController?.hide()
                     focusManager.clearFocus()
                 }
-            )
+            ),
         )
 
         FreshDivider()
