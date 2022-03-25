@@ -7,6 +7,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
@@ -14,7 +16,7 @@ import com.google.accompanist.pager.pagerTabIndicatorOffset
 import dev.yasan.fresh.gifs.model.freshgifs.HomeTab
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalPagerApi::class)
+@OptIn(ExperimentalPagerApi::class, androidx.compose.ui.ExperimentalComposeUiApi::class)
 @Composable
 fun HomeTabRow(
     modifier: Modifier = Modifier,
@@ -22,6 +24,8 @@ fun HomeTabRow(
 ) {
 
     val coroutineScope = rememberCoroutineScope()
+    val keyboardController = LocalSoftwareKeyboardController.current
+    val focusManager = LocalFocusManager.current
 
     TabRow(
         modifier = modifier,
@@ -37,6 +41,8 @@ fun HomeTabRow(
                 text = { Text(text = stringResource(id = tab.titleResourceId)) },
                 selected = pagerState.currentPage == index,
                 onClick = {
+                    keyboardController?.hide()
+                    focusManager.clearFocus()
                     coroutineScope.launch {
                         pagerState.animateScrollToPage(index)
                     }
