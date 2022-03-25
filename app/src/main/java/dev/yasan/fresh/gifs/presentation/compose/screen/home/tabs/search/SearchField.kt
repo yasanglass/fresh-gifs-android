@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
@@ -25,6 +24,7 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import dev.yasan.fresh.gifs.R
+import dev.yasan.fresh.gifs.presentation.compose.common.FreshDivider
 import dev.yasan.fresh.gifs.presentation.compose.theme.MyAppIcons
 import dev.yasan.kit.compose.foundation.grid
 import dev.yasan.kit.compose.type.rubikFamily
@@ -90,7 +90,7 @@ fun SearchField(
             )
         )
 
-        Divider()
+        FreshDivider()
 
     }
 
