@@ -10,15 +10,16 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import dev.yasan.fresh.gifs.R
 import dev.yasan.fresh.gifs.model.freshgifs.FlatGif
@@ -45,6 +46,7 @@ fun SearchTab(
 
     val trendingGifs = searchViewModel.trendingGifs.observeAsState()
     val queriedGifs = searchViewModel.queriedGifs.observeAsState()
+    val queryState = rememberSaveable { mutableStateOf("") }
 
     DisposableEffect(searchViewModel) {
 
@@ -72,11 +74,17 @@ fun SearchTab(
 
         stickyHeader {
 
-            SearchField(textState = textState)
+            SearchField(
+                value = queryState.value,
+                onValueChange = {
+                    queryState.value = it
+                    searchViewModel.loadQueriedGifs(query = it)
+                }
+            )
 
         }
 
-        val noQuery = textState.value.text.isBlank()
+        val noQuery = queryState.value.isBlank()
 
         val content = if (noQuery) {
             trendingGifs.value
