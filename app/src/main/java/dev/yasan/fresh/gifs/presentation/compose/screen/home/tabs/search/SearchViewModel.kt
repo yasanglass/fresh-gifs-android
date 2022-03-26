@@ -84,4 +84,10 @@ class SearchViewModel @Inject constructor(
 
     }
 
+    override fun onCleared() {
+        loadTrendingJob?.cancel()
+        loadQueriedJob?.cancel()
+        super.onCleared()
+    }
+
 }
