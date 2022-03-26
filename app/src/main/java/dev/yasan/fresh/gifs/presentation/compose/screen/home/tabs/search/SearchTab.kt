@@ -5,12 +5,14 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -32,6 +34,7 @@ import dev.yasan.kit.compose.type.rubikFamily
 import dev.yasan.kit.compose.util.WindowInfo
 import dev.yasan.kit.compose.util.rememberWindowInfo
 import dev.yasan.kit.core.Resource
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class, androidx.compose.ui.ExperimentalComposeUiApi::class)
 @Composable
@@ -46,12 +49,21 @@ fun SearchTab(
 
     val searchViewModel: SearchViewModel = hiltViewModel()
 
+    val coroutinesScope = rememberCoroutineScope()
+    val listState = rememberLazyListState()
+
     val trendingGifs = searchViewModel.trendingGifs.observeAsState()
     val queriedGifs = searchViewModel.queriedGifs.observeAsState()
 
     val queryState = rememberSaveable { mutableStateOf("") }
 
     val noQuery = queryState.value.isBlank()
+
+    LaunchedEffect(key1 = noQuery) {
+        coroutinesScope.launch {
+            listState.animateScrollToItem(0)
+        }
+    }
 
     val content = if (noQuery) {
         trendingGifs.value
@@ -74,6 +86,7 @@ fun SearchTab(
         modifier = lazyColumnModifier
             .fillMaxHeight()
             .animateContentSize(),
+        state = listState,
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
