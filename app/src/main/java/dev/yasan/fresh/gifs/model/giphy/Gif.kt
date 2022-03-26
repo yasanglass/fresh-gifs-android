@@ -7,6 +7,8 @@ import dev.yasan.kit.core.WebHelper
 
 /**
  * Holds the data of a single GIF.
+ *
+ * @see FlatGif
  */
 @JsonClass(generateAdapter = true)
 data class Gif(
