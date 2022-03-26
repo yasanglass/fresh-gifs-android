@@ -1,6 +1,7 @@
 package dev.yasan.fresh.gifs.data.source.network
 
 import dev.yasan.fresh.gifs.model.giphy.GiphyResponse
+import dev.yasan.fresh.gifs.util.NetworkConstants
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Headers

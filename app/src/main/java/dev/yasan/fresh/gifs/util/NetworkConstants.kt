@@ -1,4 +1,4 @@
-package dev.yasan.fresh.gifs.data.source.network
+package dev.yasan.fresh.gifs.util
 
 /**
  * Holds networking related constants.

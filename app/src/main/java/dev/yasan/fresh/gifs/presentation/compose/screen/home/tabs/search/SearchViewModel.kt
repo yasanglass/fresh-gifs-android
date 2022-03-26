@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dev.yasan.fresh.gifs.data.source.network.NetworkConstants
+import dev.yasan.fresh.gifs.util.NetworkConstants
 import dev.yasan.fresh.gifs.domain.repository.GifRepository
 import dev.yasan.fresh.gifs.model.freshgifs.FlatGif
 import dev.yasan.kit.core.DispatcherProvider
