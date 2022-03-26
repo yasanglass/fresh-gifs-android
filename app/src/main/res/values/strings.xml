@@ -3,7 +3,9 @@
     <string name="search">Search</string>
     <string name="favorites">Favorites</string>
     <string name="failed_to_load_gif">Failed to load GIF</string>
-    <string name="failed_to_load_data">Failed to load data</string>
+    <string name="error_generic">Failed to load data</string>
+    <string name="error_network">Failed to load data (Network error)</string>
+    <string name="error_unsuccessful">Failed ot load data (Unsuccessful response)</string>
     <string name="trending_gifs">Trending GIFs</string>
     <string name="no_trending_gifs">No trending GIFs</string>
     <string name="no_gifs_found">No GIFs found for the query</string>

@@ -33,8 +33,6 @@ import dev.yasan.kit.compose.util.WindowInfo
 import dev.yasan.kit.compose.util.rememberWindowInfo
 import dev.yasan.kit.core.Resource
 
-private const val TAG = "SearchTab"
-
 @OptIn(ExperimentalFoundationApi::class, androidx.compose.ui.ExperimentalComposeUiApi::class)
 @Composable
 fun SearchTab(
@@ -170,7 +168,7 @@ fun SearchTab(
                 item {
                     ErrorTabContent(
                         message = stringResource(
-                            id = content.messageResourceId ?: R.string.failed_to_load_data
+                            id = content.messageResourceId ?: R.string.error_generic
                         ),
                         onRetry = {
                             if (noQuery) {
