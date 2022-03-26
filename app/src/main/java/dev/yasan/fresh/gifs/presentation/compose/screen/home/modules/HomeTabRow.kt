@@ -16,6 +16,9 @@ import com.google.accompanist.pager.pagerTabIndicatorOffset
 import dev.yasan.fresh.gifs.model.freshgifs.HomeTab
 import kotlinx.coroutines.launch
 
+/**
+ * A [TabRow] that can be used to switch between [HomeTab]s.
+ */
 @OptIn(ExperimentalPagerApi::class, androidx.compose.ui.ExperimentalComposeUiApi::class)
 @Composable
 fun HomeTabRow(

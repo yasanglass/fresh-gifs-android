@@ -15,6 +15,9 @@ import dev.yasan.fresh.gifs.presentation.compose.screen.home.tabs.favorites.Favo
 import dev.yasan.fresh.gifs.presentation.compose.screen.home.tabs.favorites.FavoritesViewModel
 import dev.yasan.fresh.gifs.presentation.compose.screen.home.tabs.search.SearchTab
 
+/**
+ * HomePager is a [HorizontalPager] that contains [SearchTab] and [FavoritesTab].
+ */
 @OptIn(ExperimentalPagerApi::class, androidx.compose.ui.ExperimentalComposeUiApi::class)
 @Composable
 fun HomePager(

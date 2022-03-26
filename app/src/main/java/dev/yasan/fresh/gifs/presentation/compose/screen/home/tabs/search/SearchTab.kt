@@ -51,15 +51,21 @@ fun SearchTab(
 
     val queryState = rememberSaveable { mutableStateOf("") }
 
+    val noQuery = queryState.value.isBlank()
+
+    val content = if (noQuery) {
+        trendingGifs.value
+    } else {
+        queriedGifs.value
+    }
+
     LaunchedEffect(key1 = trendingGifs.value) {
         if (trendingGifs.value is Resource.Initial) {
             searchViewModel.loadTrendingGifs()
         }
     }
 
-    val windowInfo = rememberWindowInfo()
-
-    val lazyColumnModifier = when (windowInfo.screenWidthInfo) {
+    val lazyColumnModifier = when (rememberWindowInfo().screenWidthInfo) {
         is WindowInfo.WindowType.Compact -> Modifier.fillMaxSize()
         else -> Modifier.requiredWidth(480.dp)
     }
@@ -86,14 +92,6 @@ fun SearchTab(
                 }
             )
 
-        }
-
-        val noQuery = queryState.value.isBlank()
-
-        val content = if (noQuery) {
-            trendingGifs.value
-        } else {
-            queriedGifs.value
         }
 
         item {

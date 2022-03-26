@@ -7,6 +7,9 @@ import com.google.accompanist.pager.rememberPagerState
 import dev.yasan.fresh.gifs.presentation.compose.screen.home.modules.HomePager
 import dev.yasan.fresh.gifs.presentation.compose.screen.home.modules.HomeTabRow
 
+/**
+ * The apps main and only screen.
+ */
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun HomeScreen() {
