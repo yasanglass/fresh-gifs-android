@@ -6,9 +6,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dev.yasan.fresh.gifs.util.NetworkConstants
-import dev.yasan.fresh.gifs.domain.repository.GifRepository
+import dev.yasan.fresh.gifs.domain.usecase.search.GetQueriedGifsUseCase
+import dev.yasan.fresh.gifs.domain.usecase.trending.GetTrendingGifsUseCase
 import dev.yasan.fresh.gifs.model.freshgifs.FlatGif
+import dev.yasan.fresh.gifs.util.NetworkConstants
 import dev.yasan.kit.core.DispatcherProvider
 import dev.yasan.kit.core.Resource
 import kotlinx.coroutines.Job
@@ -22,7 +23,8 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchViewModel @Inject constructor(
     private val dispatchers: DispatcherProvider,
-    private val gifRepository: GifRepository,
+    private val getTrendingGifsUseCase: GetTrendingGifsUseCase,
+    private val getQueriedGifsUseCase: GetQueriedGifsUseCase
 ) : ViewModel() {
 
     companion object {
@@ -50,7 +52,7 @@ class SearchViewModel @Inject constructor(
         loadTrendingJob?.cancel()
         loadTrendingJob = viewModelScope.launch(dispatchers.io) {
             _trendingGifs.postValue(Resource.Loading())
-            val data = gifRepository.getTrendingGifs()
+            val data = getTrendingGifsUseCase()
             if (isRetry && data is Resource.Error) {
                 delay(NetworkConstants.FAKE_RETRY_DELAY)
             }
@@ -78,7 +80,7 @@ class SearchViewModel @Inject constructor(
             loadQueriedJob?.cancel()
             loadQueriedJob = viewModelScope.launch(dispatchers.io) {
                 _queriedGifs.postValue(Resource.Loading())
-                val data = gifRepository.getQueriedGifs(query = query.trim())
+                val data = getQueriedGifsUseCase(query = query.trim())
                 if (isRetry && data is Resource.Error) {
                     delay(NetworkConstants.FAKE_RETRY_DELAY)
                 }

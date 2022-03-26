@@ -42,19 +42,19 @@ fun HomePager(
             HomeTab.SEARCH.ordinal -> {
                 SearchTab(
                     favoriteGifs = favoriteGifsList,
-                    onAddToFavorites = { flatGif ->
-                        favoritesViewModel.addToFavorites(flatGif = flatGif)
+                    onAddToFavorites = { gif ->
+                        favoritesViewModel.addToFavorites(gif = gif)
                     },
-                    onRemoveFromFavorites = { flatGif ->
-                        favoritesViewModel.removeFromFavorites(flatGif = flatGif)
+                    onRemoveFromFavorites = { gif ->
+                        favoritesViewModel.removeFromFavorites(gif = gif)
                     }
                 )
             }
             else -> {
                 FavoritesTab(
                     favoriteGifs = favoriteGifsList,
-                    onRemoveFromFavorites = { flatGif ->
-                        favoritesViewModel.removeFromFavorites(flatGif = flatGif)
+                    onRemoveFromFavorites = { gif ->
+                        favoritesViewModel.removeFromFavorites(gif = gif)
                     }
                 )
             }
