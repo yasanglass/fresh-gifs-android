@@ -24,7 +24,9 @@ class GifRepositoryImp @Inject constructor(
             if (response.isSuccessful) {
                 val validGifs = response.body()?.data?.filter { it.isValid() } ?: emptyList()
                 val flatValidGifs = validGifs.map { it.flatten() }
-                Resource.Success(data = flatValidGifs)
+                // Removing duplicate items because duplicate ids can cause issues
+                // GIPHY API returns duplicate GIFs sometimes, probably a bug
+                Resource.Success(data = flatValidGifs.distinct())
             } else {
                 Resource.Error(messageResourceId = R.string.error_unsuccessful)
             }
@@ -46,7 +48,9 @@ class GifRepositoryImp @Inject constructor(
             if (response.isSuccessful) {
                 val validGifs = response.body()?.data?.filter { it.isValid() } ?: emptyList()
                 val flatValidGifs = validGifs.map { it.flatten() }
-                Resource.Success(data = flatValidGifs)
+                // Removing duplicate items because duplicate ids can cause issues
+                // GIPHY API returns duplicate GIFs sometimes, probably a bug
+                Resource.Success(data = flatValidGifs.distinct())
             } else {
                 Resource.Error(messageResourceId = R.string.error_unsuccessful)
             }
