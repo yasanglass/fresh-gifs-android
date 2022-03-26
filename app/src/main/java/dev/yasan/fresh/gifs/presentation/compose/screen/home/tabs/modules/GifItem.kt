@@ -1,7 +1,5 @@
 package dev.yasan.fresh.gifs.presentation.compose.screen.home.tabs.modules
 
-import android.content.res.Configuration.UI_MODE_NIGHT_NO
-import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.os.Build
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -10,7 +8,6 @@ import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.sharp.Favorite
 import androidx.compose.material.icons.sharp.FavoriteBorder
-import androidx.compose.material.icons.sharp.Warning
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -21,7 +18,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import coil.ImageLoader
 import coil.compose.AsyncImagePainter
 import coil.compose.SubcomposeAsyncImage
@@ -35,12 +31,23 @@ import dev.yasan.fresh.gifs.R
 import dev.yasan.fresh.gifs.model.freshgifs.FlatGif
 import dev.yasan.fresh.gifs.model.freshgifs.GifLoadState
 import dev.yasan.fresh.gifs.presentation.compose.common.FreshDivider
+import dev.yasan.fresh.gifs.presentation.compose.screen.home.tabs.search.SearchTab
 import dev.yasan.fresh.gifs.presentation.compose.theme.MyAppIcons
 import dev.yasan.kit.compose.foundation.grid
 import dev.yasan.kit.compose.type.rubikFamily
 
+/**
+ * Shows a single GIF item on [SearchTab].
+ *
+ * @see GifItemError
+ */
 @Composable
-fun GifItem(modifier: Modifier = Modifier, gif: FlatGif, favorite: Boolean, onClick: () -> Unit) {
+fun GifItem(
+    modifier: Modifier = Modifier,
+    gif: FlatGif,
+    favorite: Boolean,
+    onClick: () -> Unit
+) {
 
     val context = LocalContext.current
 
@@ -128,33 +135,4 @@ fun GifItem(modifier: Modifier = Modifier, gif: FlatGif, favorite: Boolean, onCl
 
     }
 
-}
-
-@Preview(uiMode = UI_MODE_NIGHT_NO)
-@Preview(uiMode = UI_MODE_NIGHT_YES)
-@Composable
-fun GifItemError() {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(color = colorResource(id = R.color.layer_background)),
-        contentAlignment = Alignment.Center
-    ) {
-        Row(
-            modifier = Modifier.padding(grid(2)),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Icon(
-                imageVector = MyAppIcons.Warning,
-                contentDescription = null,
-                tint = colorResource(id = R.color.text_desc)
-            )
-            Spacer(modifier = Modifier.requiredWidth(grid()))
-            Text(
-                text = stringResource(R.string.failed_to_load_gif),
-                color = colorResource(id = R.color.text_desc),
-                fontFamily = rubikFamily,
-            )
-        }
-    }
 }

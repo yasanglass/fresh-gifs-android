@@ -77,10 +77,10 @@ dependencies {
 
     // Lifecycle
     implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.4.1'
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version"
 
     // Hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
@@ -95,11 +95,8 @@ dependencies {
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.8.1'
 
     // Accompanist
-    implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanist_version"
     implementation "com.google.accompanist:accompanist-pager:$accompanist_version"
     implementation "com.google.accompanist:accompanist-pager-indicators:$accompanist_version"
-    implementation "com.google.accompanist:accompanist-navigation-animation:$accompanist_version"
-    implementation "com.google.accompanist:accompanist-navigation-material:$accompanist_version"
     implementation "com.google.accompanist:accompanist-placeholder:$accompanist_version"
 
     // Coil

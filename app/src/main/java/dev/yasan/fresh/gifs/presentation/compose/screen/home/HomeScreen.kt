@@ -8,7 +8,7 @@ import dev.yasan.fresh.gifs.presentation.compose.screen.home.modules.HomePager
 import dev.yasan.fresh.gifs.presentation.compose.screen.home.modules.HomeTabRow
 
 /**
- * The apps main and only screen.
+ * The main screen of the app. Connects the [HomePager] and [HomeTabRow] components.
  */
 @OptIn(ExperimentalPagerApi::class)
 @Composable

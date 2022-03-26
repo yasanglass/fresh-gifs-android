@@ -24,12 +24,18 @@ class FavoritesViewModel @Inject constructor(
 
     val favoriteGifs = favoriteRepository.getFavoriteGifs()
 
+    /**
+     * Adds a [FlatGif] to the favorites.
+     */
     fun addToFavorites(flatGif: FlatGif) {
         viewModelScope.launch(dispatchers.io) {
             favoriteRepository.addToFavorites(flatGif)
         }
     }
 
+    /**
+     * Removes a [FlatGif] from the favorites.
+     */
     fun removeFromFavorites(flatGif: FlatGif) {
         viewModelScope.launch(dispatchers.io) {
             favoriteRepository.removeFromFavorites(flatGif)

@@ -25,8 +25,6 @@ fun HomePager(
     pagerState: PagerState,
 ) {
 
-    // TODO Scroll to top when tab title is clicked
-
     val keyboardController = LocalSoftwareKeyboardController.current
     val focusManager = LocalFocusManager.current
 

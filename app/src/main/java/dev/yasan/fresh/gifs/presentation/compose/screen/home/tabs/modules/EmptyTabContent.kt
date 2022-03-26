@@ -21,6 +21,12 @@ import dev.yasan.kit.compose.foundation.grid
 import dev.yasan.kit.compose.preview.string.StringPreviewProvider
 import dev.yasan.kit.compose.type.rubikFamily
 
+/**
+ * A simple layout to show when the content is empty.
+ *
+ * @param text the text to show.
+ * @param icon the icon to show, default is [Error].
+ */
 @Preview(uiMode = UI_MODE_NIGHT_NO, group = "Day")
 @Preview(uiMode = UI_MODE_NIGHT_YES, group = "Night")
 @Composable
@@ -36,18 +42,22 @@ fun EmptyTabContent(
             .fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+
         Icon(
             imageVector = icon,
             contentDescription = null,
             tint = colorResource(id = R.color.text_desc)
         )
+
         Spacer(modifier = Modifier.requiredHeight(grid()))
+
         Text(
             text = text,
             color = colorResource(id = R.color.text_desc),
             fontFamily = rubikFamily,
             textAlign = TextAlign.Center
         )
+
     }
 
 }

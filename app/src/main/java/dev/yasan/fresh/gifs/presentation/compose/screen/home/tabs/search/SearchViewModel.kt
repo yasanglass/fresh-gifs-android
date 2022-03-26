@@ -40,6 +40,9 @@ class SearchViewModel @Inject constructor(
     /**
      * Loads trending GIFs.
      *
+     * @param isRetry whether this call is a retry.
+     * Adds a fake delay to avoid an instant failure without a proper response on the interface.
+     *
      * @see trendingGifs
      */
     fun loadTrendingGifs(isRetry: Boolean = false) {
@@ -59,6 +62,10 @@ class SearchViewModel @Inject constructor(
 
     /**
      * Loads GIFs for the given query.
+     *
+     * @param query the query to search for.
+     * @param isRetry whether this call is a retry.
+     * Adds a fake delay to avoid an instant failure without a proper response on the interface.
      *
      * @see queriedGifs
      */
