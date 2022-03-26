@@ -7,12 +7,13 @@ import dev.yasan.fresh.gifs.domain.usecase.favorite.AddToFavoriteGifsUseCase
 import dev.yasan.fresh.gifs.domain.usecase.favorite.GetFavoriteGifsUseCase
 import dev.yasan.fresh.gifs.domain.usecase.favorite.RemoveFromFavoriteGifsUseCase
 import dev.yasan.fresh.gifs.model.freshgifs.FlatGif
+import dev.yasan.fresh.gifs.presentation.compose.screen.home.tabs.search.SearchTab
 import dev.yasan.kit.core.DispatcherProvider
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
- * [ViewModel] for [FavoritesTab].
+ * A shared [ViewModel] for [SearchTab] & [FavoritesTab].
  */
 @HiltViewModel
 class FavoritesViewModel @Inject constructor(
