@@ -1,6 +1,6 @@
 # Fresh GIFs
 
-Simple GIF seaching Android App powered by GIPHY API.
+Simple GIF searching Android App powered by GIPHY API.
 
 ## Features
 
@@ -9,7 +9,8 @@ Simple GIF seaching Android App powered by GIPHY API.
 - Shows a list of matching GIFs for the searched text.
 - Add & remove GIFs to/from favorites.
 - Adjusted UI layout depending on screen size.
-- Subtle animations including content placeholders.
+- Subtle animations including content placeholder animations.
+- Full day/night theme support.
 
 ## Technologies & Libraries 
 
