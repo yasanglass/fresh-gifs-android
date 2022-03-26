@@ -59,9 +59,11 @@ fun SearchTab(
 
     val noQuery = queryState.value.isBlank()
 
+    var firstComposition = true
     LaunchedEffect(key1 = noQuery) {
         coroutinesScope.launch {
-            listState.animateScrollToItem(0)
+            if (firstComposition) firstComposition = false
+            else listState.animateScrollToItem(0)
         }
     }
 
