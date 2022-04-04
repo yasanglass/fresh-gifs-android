@@ -18,7 +18,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import dev.yasan.fresh.gifs.R
 import dev.yasan.fresh.gifs.presentation.compose.theme.MyAppIcons
 import dev.yasan.kit.compose.foundation.grid
-import dev.yasan.kit.compose.preview.string.StringPreviewProvider
+import dev.yasan.kit.compose.preview.string.StringPreviewProvider3WordsMax
 import dev.yasan.kit.compose.type.rubikFamily
 
 /**
@@ -31,7 +31,7 @@ import dev.yasan.kit.compose.type.rubikFamily
 @Preview(uiMode = UI_MODE_NIGHT_YES, group = "Night")
 @Composable
 fun EmptyTabContent(
-    @PreviewParameter(StringPreviewProvider::class) text: String,
+    @PreviewParameter(StringPreviewProvider3WordsMax::class) text: String,
     icon: ImageVector = MyAppIcons.Error
 ) {
 

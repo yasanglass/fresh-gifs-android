@@ -21,20 +21,20 @@ import androidx.compose.ui.unit.sp
 import dev.yasan.fresh.gifs.R
 import dev.yasan.fresh.gifs.presentation.compose.theme.MyAppIcons
 import dev.yasan.kit.compose.foundation.grid
-import dev.yasan.kit.compose.preview.string.StringPreviewProvider
+import dev.yasan.kit.compose.preview.string.StringPreviewProvider3WordsMax
 import dev.yasan.kit.compose.type.rubikFamily
 
 /**
  * A simple error layout that shows a message and a button to retry.
  *
  * @param message the error message to show.
- * @param retryAction the action to perform when the retry button is clicked.
+ * @param onRetry the action to perform when the retry button is clicked.
  */
 @Preview(uiMode = UI_MODE_NIGHT_NO, group = "Day")
 @Preview(uiMode = UI_MODE_NIGHT_YES, group = "Night")
 @Composable
 fun ErrorTabContent(
-    @PreviewParameter(StringPreviewProvider::class) message: String,
+    @PreviewParameter(StringPreviewProvider3WordsMax::class) message: String,
     onRetry: () -> Unit = {}
 ) {
 
